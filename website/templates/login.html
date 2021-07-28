@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title%}Авторизация{% endblock %}
+{% block content%}
+
+
+<form method="POST" class="my-5 col-xs-6 col-md-4 mx-auto shadow p-3 mb-5 bg-white rounded">
+    <div class="form-group form-floating  mb-3">
+        <h3>Love Chernihiv</h3>
+    </div>
+    <div class="form-group form-floating  mb-3">
+        <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Username">
+        <label for="floatingInput">Имя пользователя</label>
+    </div>
+    <div class="form-group form-floating mb-3">
+        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Пароль</label>
+    </div>
+    <div class="form-group form-floating mb-3">
+        <button type="submit" class="btn btn-primary">
+            Авторизоваться
+        </button>
+    </div>
+
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title%}Выбор бота{% endblock %}
+{% block content%}
+<div class="container col-xs-12 col-md-8 my-5 mx-auto">
+
+    <p><h5>Выбери бота - <a href="/logout" class="link-danger" style="text-decoration:none">Выход</a></h5></p>
+    <a style="text-decoration:none; color: black" href="/bots/finds/statistics">
+        <div class="p-3 border mx-auto shadow  mb-3">
+            <img src="../static/images/finds.png" width="70px"/>
+            Находки/Потеряшки от Love Chernihiv
+        </div>
+    </a>
+    <a style="text-decoration:none; color: black" href="/bots/affiche/statistics">
+        <div class="p-3 border mx-auto shadow  mb-3">
+            <img src="../static/images/affiche.png" width="70px"/>
+            Афиша от Love Chernihiv
+        </div>
+    </a>
+</div>
+{% endblock %}

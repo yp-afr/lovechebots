@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+{% block title%}Бот Находки{% endblock %}
+{% block content%}
+
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark  p-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/bots">Находки Бот</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/bots/finds/statistics">Статистика</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bots/finds/db">Работа с базой</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выход</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="row align-items-start">
+
+    <div class="col-md-6 col-xs-12 chart-container">
+        <div class="row justify-content-between m-3">
+            <div class="col"><p class="fs-5">График новых пользователей</p></div>
+            <div class="col">
+                <p class="text-end">
+                    <span id="users_last_day" class="btn btn-outline-info">24h</span>
+                    <span id="users_seven_days" class="btn btn-outline-info">7d</span>
+                    <span id="users_thirty_days" class="btn btn-outline-info">30d</span>
+                </p>
+            </div>
+            <canvas id="new_users7"></canvas>
+            <div class="card p-0">
+                <div class="card-header">
+                    Информация
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p class="fs-6">Новых пользователей за последние 24 часа: {{ rows_count[0] }}<br>
+                            Новых пользователей за последние 7 дней: {{ rows_count[1] }}<br>
+                            Новых пользователей за последние 30 дней: {{ rows_count[2] }}</p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="col-md-6 col-xs-12 chart-container">
+        <div class="row justify-content-between m-3">
+            <div class="col"><p class="fs-5">График новых постов<br>(За последние 30 дней)</p></div>
+            <canvas id="new_posts30"></canvas>
+        </div>
+
+
+    </div>
+    <!--    <div class="col-md-6 col-xs-12 chart-container">-->
+    <!--        <div class="row justify-content-between m-3">-->
+    <!--            <p class="fs-5">График ТОП-10 нажимаемых кнопок за 30 дней</p></div>-->
+    <!--        <canvas id="clicked_buttons"></canvas>-->
+    <!--        <div class="card p-0">-->
+    <!--            <div class="card-header">-->
+    <!--                Информация-->
+    <!--            </div>-->
+    <!--            <div class="card-body">-->
+    <!--                <blockquote class="blockquote mb-0">-->
+    <!--                    <p class="fs-6" id="clicks_p">-->
+    <!--                        Loading...-->
+    <!--                    </p>-->
+    <!--                </blockquote>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+
+
+
+
+
+var chartData1 = {
+    labels : [{% for d in data1 %}
+    "{{d}}",
+    {% endfor %}],
+    datasets : [{
+        label: 'Новые пользователи',
+        fill: true,
+        lineTension: 0.1,
+        backgroundColor: "rgba(75,192,192,0.4)",
+        borderColor: "rgba(75,192,192,1)",
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "rgba(75,192,192,1)",
+        pointBackgroundColor: "#fff",
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+        pointHoverBorderColor: "rgba(220,220,220,1)",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data : [{% for d in data1 %}
+        {{data1[d]}},
+        {% endfor %}],
+        spanGaps: false
+    }],
+}
+
+
+var chartData7 = {
+    labels : [{% for d in data7 %}
+    "{{d}}",
+    {% endfor %}],
+    datasets : [{
+        label: 'Новые пользователи',
+        fill: true,
+        lineTension: 0.1,
+        backgroundColor: "rgba(75,192,192,0.4)",
+        borderColor: "rgba(75,192,192,1)",
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "rgba(75,192,192,1)",
+        pointBackgroundColor: "#fff",
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+        pointHoverBorderColor: "rgba(220,220,220,1)",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data : [{% for d in data7 %}
+        {{data7[d]}},
+        {% endfor %}],
+        spanGaps: false
+    }],
+}
+
+
+var chartData30 = {
+    labels : [{% for d in data30 %}
+    "{{d}}",
+    {% endfor %}],
+    datasets : [{
+        label: 'Новые пользователи',
+        fill: true,
+        lineTension: 0.1,
+        backgroundColor: "rgba(75,192,192,0.4)",
+        borderColor: "rgba(75,192,192,1)",
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "rgba(75,192,192,1)",
+        pointBackgroundColor: "#fff",
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+        pointHoverBorderColor: "rgba(220,220,220,1)",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data : [{% for d in data30 %}
+        {{data30[d]}},
+        {% endfor %}],
+        spanGaps: false
+    }],
+}
+
+var chartData30_posts = {
+    labels : [{% for p in posting_stats %}
+    "{{p}}",
+    {% endfor %}],
+    datasets : [{
+        label: 'Новые пользователи',
+        fill: true,
+        lineTension: 0.1,
+        backgroundColor: "rgba(75,192,192,0.4)",
+        borderColor: "rgba(75,192,192,1)",
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "rgba(75,192,192,1)",
+        pointBackgroundColor: "#fff",
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+        pointHoverBorderColor: "rgba(220,220,220,1)",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data : [{% for p in posting_stats %}
+        {{posting_stats[p]}},
+        {% endfor %}],
+        spanGaps: false
+    }],
+}
+
+
+
+</script>
+<script src="{{url_for('static', filename='js/finds_charts.js')}}"></script>
+{% endblock %}

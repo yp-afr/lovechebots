@@ -1,0 +1,226 @@
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Удаление подкатегории</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Вы уверены что хотите <b>удалить</b> данную подкатегорию? <br/>Все посты под данной подкатегории
+                    будут удалены!</p>
+                <form method="POST" id="form-delete-subcategory" action="/bots/affiche/db/deletesubcategory">
+                    <input type="hidden" name="id_del_sub">
+                    <input type="hidden" name="id_del_sub_cat_code">
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Закрыть</button>
+                <button type="submit" form="form-delete-subcategory" class="btn btn-danger">Удалить</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="addModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Добавление подкатегории</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Для добавление подкатегории необходимо указать имя подкатегории, оно будет отображено, и код
+                    подкатегории, он используеться для внутренней механики<br>
+                <p class="text-muted" id="current_category"></p>
+                </p>
+                <form method="POST" id="form-add-subcategory" action="/bots/affiche/db/addsubcategory">
+                    <input type="hidden" name="id_category">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label for="inputSubName" class="col-form-label">Имя: </label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="inputSubName" name="subcategory_name" class="form-control"
+                                   aria-describedby="nameHelpInline">
+                        </div>
+                        <div class="col-auto">
+                            <span id="nameHelpInline" class="form-text">
+                              Например: "Ночная жизнь"
+                            </span>
+                        </div>
+                        <div class="col-auto">
+                            <label for="inputSubCode" class="col-form-label">Код: </label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="inputSubCode" name="subcategory_code" class="form-control"
+                                   aria-describedby="codeHelpInline">
+                        </div>
+                        <div class="col-auto">
+                            <span id="codeHelpInline" class="form-text">
+                              Например: "nightlife_affiche"
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Закрыть</button>
+                <button type="submit" form="form-add-subcategory" class="btn btn-success">Добавить</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="addCategoryModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Добавление категории</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Для добавление категории необходимо указать имя и код</p>
+                </p>
+                <form method="POST" id="form-add-category" action="/bots/affiche/db/add-category">
+                    <input type="hidden" name="id_category">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label for="inputCatName" class="col-form-label">Имя: </label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="inputCatName" name="category_name" class="form-control"
+                                   aria-describedby="categoryNameHelpInline">
+                        </div>
+                        <div class="col-auto">
+                            <span id="categoryNameHelpInline" class="form-text">
+                              Например: "Бьюти-мастера"
+                            </span>
+                        </div>
+                        <div class="col-auto">
+                            <label for="inputCategoryCody" class="col-form-label">Код: </label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="inputCategoryCody" name="category_code" class="form-control"
+                                   aria-describedby="categoryHelpInline">
+                        </div>
+                        <div class="col-auto">
+                            <span id="categoryHelpInline" class="form-text">
+                              Например: "beauty_masters или beautymasters"
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Закрыть</button>
+                <button type="submit" form="form-add-category" class="btn btn-success">Добавить</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="delCategoryModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Удаление категории</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Вы уверены что хотите <b>удалить</b> данную категорию? <br/>Все подкатегории, а так же посты по этой
+                    категории будут удалены!</p>
+                <form method="POST" id="form-del-category" action="/bots/affiche/db/del-category">
+                    <input type="hidden" name="id_deleting_category">
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Закрыть</button>
+                <button type="submit" form="form-del-category" class="btn btn-danger">Удалить</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="editSubcategoryModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Изменение категории</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Введите новое имя</p>
+                <form method="POST" id="form-edit-subcategory" action="/bots/affiche/db/edit-subcategory">
+                    <input type="hidden" name="id_editing_subcategory">
+                    <div class="col-auto">
+                        <label for="inputNewSubName" class="col-form-label">Имя: </label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" id="inputNewSubName" name="new_subcategory_name" class="form-control"
+                               aria-describedby="editsubcategoryNameHelpInline">
+                    </div>
+                    <div class="col-auto">
+                            <span id="editsubcategoryNameHelpInline" class="form-text">
+                              Например: "Развлечения"
+                            </span>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Закрыть</button>
+                <button type="submit" form="form-edit-subcategory" class="btn btn-primary">Изменить</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="editCategoryModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Изменение категории</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Введите новое имя</p>
+                <form method="POST" id="form-edit-category" action="/bots/affiche/db/edit-category">
+                    <input type="hidden" name="id_editing_category">
+                    <div class="col-auto">
+                        <label for="inputNewCatName" class="col-form-label">Имя: </label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" id="inputNewCatName" name="new_category_name" class="form-control"
+                               aria-describedby="editcategoryNameHelpInline">
+                    </div>
+                    <div class="col-auto">
+                            <span id="editcategoryNameHelpInline" class="form-text">
+                              Например: "Афиша"
+                            </span>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Закрыть</button>
+                <button type="submit" form="form-edit-category" class="btn btn-primary">Изменить</button>
+            </div>
+
+        </div>
+    </div>
+</div>

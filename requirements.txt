@@ -1,0 +1,8 @@
+python-dotenv
+Flask
+aiogram==2.9
+flask-sqlalchemy
+flask-login
+redis
+aioredis
+gino

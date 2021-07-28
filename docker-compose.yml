@@ -1,0 +1,66 @@
+version: '3.1'
+
+services:
+
+  db:
+    container_name: database_test
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql
+    networks:
+      - botnet
+  
+  redis:
+    container_name: redis
+    image: "redis:alpine"
+    restart: always
+  
+  affichebot:
+    container_name: affichebot
+    build:
+      context: .
+    command: python affiche.py
+    networks:
+      - botnet
+    restart: always
+    env_file:
+      - ".env"
+    depends_on:
+      - db
+
+  findsbot:
+    container_name: findsbot
+    build:
+      context: .
+    command: python finds.py
+    networks:
+      - botnet
+    restart: always
+    env_file:
+      - ".env"
+    depends_on:
+      - db
+
+  website:
+    container_name: website
+    build:
+      context: .
+    command: python site.py
+    networks:
+      - botnet
+    restart: always
+    env_file:
+      - ".env"
+    depends_on:
+      - db
+    ports:
+      - 80:80
+
+networks:
+  botnet:
+    driver: bridge

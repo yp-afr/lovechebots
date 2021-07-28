@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title%}Изменение значения{% endblock %}
+{% block content%}
+
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark  p-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/bots">Афиша Бот</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/bots/affiche/statistics">Статистика</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bots/affiche/db">Работа с базой</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выход</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<form class="my-5 col-xs-6 col-md-4 mx-auto shadow p-3 mb-5 bg-white rounded" method="POST">
+  <div>
+    <p class="fs-5 ">Изменение значения</p>
+    <p class="text-muted">({{name.description}})</p>
+  </div>
+  <div class="mb-3">
+    <input id="nameId" name="nameID" type="hidden" value="{{name.id}}">
+    <textarea class="form-control" rows="5" name="newvalue">{{name.value}}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Подтвердить</button>
+  <a href="/bots/affiche/db" class="btn btn-outline-danger">Отмена</a>
+</form>
+
+{% endblock %}

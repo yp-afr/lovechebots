@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title%}Бот Находки{% endblock %}
+{% block content%}
+
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark  p-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/bots">Находки Бот</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/bots/finds/statistics">Статистика</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bots/finds/db">Работа с базой</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выход</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<table class="table">
+    <thead>
+    <hr>
+    <h4>Работа с именами</h4>
+    <hr>
+    <tr>
+        <th scope="col">Описание</th>
+        <th scope="col">Значение</th>
+        <th scope="col">Операция</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for row in names %}
+    <tr>
+        <td>{{row[1]}}</td>
+        <td>{{row[2]}}</td>
+        <td><a href="/bots/finds/db/edit_name/{{row[0]}}" class="btn btn-outline-danger">Изменить</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+{% endblock %}
