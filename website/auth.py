@@ -14,6 +14,7 @@ def login():
         password = request.form.get('password')
         user = Users.query.filter_by(username=username).first()
         if user:
+            print(generate_password_hash(password))
             if check_password_hash(user.password, password):
                 flash('Успешно!', category='success')
                 login_user(user, remember=True)

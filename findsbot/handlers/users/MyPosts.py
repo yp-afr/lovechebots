@@ -14,8 +14,8 @@ async def my_posts(message: types.Message):
     if rows:
         for row in rows:
             markup = types.InlineKeyboardMarkup(inline_keyboard=[
-                [types.InlineKeyboardButton(text="Изменить", callback_data=change_post_cb.new(item_id=int(row.id))),
-                 types.InlineKeyboardButton(text="Удалить", callback_data=del_post.new(item_id=int(row.id)))]
+                [types.InlineKeyboardButton(text="Змінити", callback_data=change_post_cb.new(item_id=int(row.id))),
+                 types.InlineKeyboardButton(text="Видалити", callback_data=del_post.new(item_id=int(row.id)))]
             ])
             text = "<b>" + row.type + "</b> -- " + row.category + "\n\n" + row.caption
             if row.photo is None:

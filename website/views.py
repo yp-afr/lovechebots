@@ -14,6 +14,10 @@ from .scripts.load_names import get_names_affiche, get_names_finds
 
 views = Blueprint('views', __name__)
 
+@views.route('/')
+def home():
+    return render_template('home.html')
+
 
 @views.route('/bots')
 @login_required

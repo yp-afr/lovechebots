@@ -39,11 +39,9 @@
                 </p>
                 <form method="POST" id="form-add-subcategory" action="/bots/affiche/db/addsubcategory">
                     <input type="hidden" name="id_category">
-                    <div class="row g-3 align-items-center">
+                    <div class="col-auto g-3 align-items-center">
                         <div class="col-auto">
                             <label for="inputSubName" class="col-form-label">Имя: </label>
-                        </div>
-                        <div class="col-auto">
                             <input type="text" id="inputSubName" name="subcategory_name" class="form-control"
                                    aria-describedby="nameHelpInline">
                         </div>
@@ -51,11 +49,9 @@
                             <span id="nameHelpInline" class="form-text">
                               Например: "Ночная жизнь"
                             </span>
-                        </div>
+                        </div><br>
                         <div class="col-auto">
                             <label for="inputSubCode" class="col-form-label">Код: </label>
-                        </div>
-                        <div class="col-auto">
                             <input type="text" id="inputSubCode" name="subcategory_code" class="form-control"
                                    aria-describedby="codeHelpInline">
                         </div>
@@ -90,11 +86,9 @@
                 </p>
                 <form method="POST" id="form-add-category" action="/bots/affiche/db/add-category">
                     <input type="hidden" name="id_category">
-                    <div class="row g-3 align-items-center">
+                    <div class="col-auto g-3 align-items-center">
                         <div class="col-auto">
                             <label for="inputCatName" class="col-form-label">Имя: </label>
-                        </div>
-                        <div class="col-auto">
                             <input type="text" id="inputCatName" name="category_name" class="form-control"
                                    aria-describedby="categoryNameHelpInline">
                         </div>
@@ -105,8 +99,6 @@
                         </div>
                         <div class="col-auto">
                             <label for="inputCategoryCody" class="col-form-label">Код: </label>
-                        </div>
-                        <div class="col-auto">
                             <input type="text" id="inputCategoryCody" name="category_code" class="form-control"
                                    aria-describedby="categoryHelpInline">
                         </div>

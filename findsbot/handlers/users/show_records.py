@@ -43,20 +43,20 @@ async def show_all_choose_category(call: types.CallbackQuery, state: FSMContext,
             admins = await get_admins()
             if int(types.User.get_current().id) in admins:
                 markup = types.InlineKeyboardMarkup(inline_keyboard=[
-                    [types.InlineKeyboardButton(text="Изменить",
+                    [types.InlineKeyboardButton(text="Змінити",
                                                 callback_data=change_post_cb.new(item_id=int(row.id))),
-                     types.InlineKeyboardButton(text="Удалить", callback_data=del_post.new(item_id=int(row.id)))]
+                     types.InlineKeyboardButton(text="Видалити", callback_data=del_post.new(item_id=int(row.id)))]
                 ])
             else:
                 markup = None
             if row.photo is None:
                 await call.message.answer(f"<b>{row.type}</b> -- {row.category}\n\n{row.caption}\n"
-                                          f"\nКонтакты: {row.author_username}", reply_markup=markup)
+                                          f"\nКонтакти: {row.author_username}", reply_markup=markup)
             else:
                 await call.message.answer_photo(photo=row.photo,
                                                 caption=f"<b>{row.type}</b> -- {row.category}\n\n{row.caption}"
-                                                        f"\n\nКонтакты: {row.author_username}", reply_markup=markup)
+                                                        f"\n\nКонтакти: {row.author_username}", reply_markup=markup)
             await asyncio.sleep(0.3)
     else:
-        await call.message.answer(f"В категории <b>{item_type}->{category}</b> нет постов")
+        await call.message.answer(f"Категорія <b>{item_type}->{category}</b> порожня")
     await state.reset_state()

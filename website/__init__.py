@@ -10,7 +10,13 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'TjWnZr4u7x!A%D*G-KaNdRgUkXp2s5v8y/B?E(H+MbQeShVmYq3t6w9z$C&F)J@N'
-    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:example@192.168.99.100:5432/postgres"
+
+    PGUSER = os.getenv("PGUSER")
+    PGPASSWORD = os.getenv("PGPASSWORD")
+    PGHOST = os.getenv("PGHOST")
+    PGDATABASE = os.getenv("PGDATABASE")
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{PGUSER}:{PGPASSWORD}@{PGHOST}/{PGDATABASE}"
     db.init_app(app)
 
     from .views import views

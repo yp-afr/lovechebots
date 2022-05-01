@@ -10,12 +10,12 @@ new_post_types_cd = CallbackData("type", "value")
 
 async def categories_keyboard():
     markup = types.InlineKeyboardMarkup(inline_keyboard=[
-        [types.InlineKeyboardButton(text=await get_name("button_docs"), callback_data=categories_cd.new("Документы"))],
-        [types.InlineKeyboardButton(text=await get_name("button_technic"), callback_data=categories_cd.new("Техника"))],
-        [types.InlineKeyboardButton(text=await get_name("button_keys"), callback_data=categories_cd.new("Ключи"))],
-        [types.InlineKeyboardButton(text=await get_name("button_handbags"), callback_data=categories_cd.new("Кошельки/Сумки"))],
-        [types.InlineKeyboardButton(text=await get_name("button_pets"), callback_data=categories_cd.new("Питомцы"))],
-        [types.InlineKeyboardButton(text=await get_name("button_else"), callback_data=categories_cd.new("Другое"))],
+        [types.InlineKeyboardButton(text=await get_name("button_docs"), callback_data=categories_cd.new("Документи"))],
+        [types.InlineKeyboardButton(text=await get_name("button_technic"), callback_data=categories_cd.new("Техніка"))],
+        [types.InlineKeyboardButton(text=await get_name("button_keys"), callback_data=categories_cd.new("Ключі"))],
+        [types.InlineKeyboardButton(text=await get_name("button_handbags"), callback_data=categories_cd.new("Гаманці/Сумки"))],
+        [types.InlineKeyboardButton(text=await get_name("button_pets"), callback_data=categories_cd.new("Тварини"))],
+        [types.InlineKeyboardButton(text=await get_name("button_else"), callback_data=categories_cd.new("Інше"))],
         [types.InlineKeyboardButton(text=await get_name("button_back"), callback_data=categories_cd.new("Назад"))],
     ])
     return markup
